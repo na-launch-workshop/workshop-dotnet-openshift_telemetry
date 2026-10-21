@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: workshop-opentelemetry-dotnet
+  title: Using Red Hat build of OpenTelemetry - .NET
+  description: |
+    Using Red Hat build of OpenTelemetry with .NET
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+#   backstage.io/techdocs-ref: dir:https://<hosted-git-repo>   # use absolute path instead to consolidate techdocs among repo forks
+#   gitlab.com/instance: ""                                    # uncomment these two gitlab.com lines to disable GitLab tabs
+#   gitlab.com/project-slug: ""                                # i.e. Issues, Pull/Merge Requests, CI in entity details
+  tags:
+    - opentelemetry
+    - dotnet
+# links:
+#   - url: https://<devspaces-url>/#<hosted-git-repo>
+#     title: 🚀 Launch from Dev Spaces
+#     icon: web
+spec:
+  type: module
+  lifecycle: development
+  owner: group:default/users
+  subcomponentOf: component:default/workshop-repository

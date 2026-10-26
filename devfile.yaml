@@ -1,0 +1,61 @@
+schemaVersion: 2.3.0
+metadata:
+  name: workshop-opentelemetry-dotnet
+  version: 1.0.0
+  description: Using Red Hat build of OpenTelemetry - .NET
+attributes:
+  che-editor: vscode
+components:
+  - name: tools
+    container:
+      image: image-registry.openshift-image-registry.svc:5000/workspace-images/udi-rhel9:latest
+      env:
+        - name: DEBUG_PORT
+          value: "5858"
+        - name: DOTNET_CLI_TELEMETRY_OPTOUT
+          value: "1"
+        - name: DOTNET_NOLOGO
+          value: "1"
+        - name: KUBE_EDITOR
+          value: vim
+      endpoints:
+        - name: https-dotnet
+          exposure: public
+          protocol: https
+          targetPort: 5000
+        - name: debug
+          exposure: none
+          targetPort: 5858
+      volumeMounts:
+        - name: nuget
+          path: /home/user/.nuget
+      cpuLimit: '2'
+      cpuRequest: '500m'
+      memoryLimit: '3Gi'
+      memoryRequest: '1Gi'
+      mountSources: true
+
+  - name: nuget
+    volume:
+      size: 1G
+
+commands:
+  - id: build
+    exec:
+      label: "1. Build the application"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "dotnet build src/TelemetryWorkshop"
+      group:
+        kind: build
+        isDefault: true
+
+  - id: run-dotnet
+    exec:
+      label: "2. Run the application"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "dotnet run --project src/TelemetryWorkshop --urls http://0.0.0.0:5000"
+      group:
+        kind: run
+        isDefault: true

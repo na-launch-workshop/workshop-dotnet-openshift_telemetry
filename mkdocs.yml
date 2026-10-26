@@ -1,0 +1,8 @@
+site_name: Using Red Hat build of OpenTelemetry - .NET
+site_description: Using Red Hat build of OpenTelemetry with .NET
+
+nav:
+  - Overview: index.md
+
+plugins:
+  - techdocs-core

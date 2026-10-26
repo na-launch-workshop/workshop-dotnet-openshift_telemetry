@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>TelemetryWorkshop</RootNamespace>
+  </PropertyGroup>
+
+  <!--
+    No OpenTelemetry packages on purpose. The OpenTelemetry Operator injects the
+    .NET auto-instrumentation at deploy time, and Activity/ActivitySource come
+    from the shared framework, so the app needs no tracing dependencies at all.
+  -->
+
+</Project>
